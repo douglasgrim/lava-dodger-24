@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import WelcomePage from './pages/WelcomePage';
+import InteractivePage from './pages/InteractivePage';
 import Header from './components/Header';
 import { ReadyProvider } from './contexts/ReadyContext';
 import './app.css';
@@ -11,6 +12,7 @@ function App():ReactElement {
       <ReadyProvider>
         <Header activeTitle="Lava Dodger '24" />
         <WelcomePage />
+        <InteractivePage />
       </ReadyProvider>
     </div>
   );
