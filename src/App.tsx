@@ -6,6 +6,10 @@ import Header from './components/Header';
 import { ReadyProvider } from './contexts/ReadyContext';
 import './app.css';
 
+/**
+ * 
+ * @returns React component representing the root view
+ */
 function App():ReactElement {
   return (
     <div className="app">

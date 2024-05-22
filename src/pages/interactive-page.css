@@ -3,5 +3,18 @@
 }
 
 .interactive-page img {
-  width: 50px;
+  width: 70px;
+}
+
+.map {
+  position: absolute;
+  width: 2600px;
+  height: 2600px;
+}
+
+.map-container {
+  position: relative;
+  overflow: hidden;
+  width: 50vw;
+  height: 76vh;
 }
