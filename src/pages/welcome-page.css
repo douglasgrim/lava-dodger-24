@@ -1,0 +1,33 @@
+.welcome-page {
+  height: 88vh;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 75vh;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.button-container.showing {
+  opacity: 1;
+}
+
+button {
+  font-size: 30px;
+  font-family: 'Concert One';
+  border-radius: 8px;
+  background-color: #364457;
+  color: white;
+  padding: 5px 20px 20px 20px;
+  border: solid 1px white;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 1;
+}
