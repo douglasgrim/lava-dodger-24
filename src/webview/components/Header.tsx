@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState, useContext } from 'react';
 import './header.css';
-import { ReadyContext } from '../contexts/ReadyContext';
+import { ReadyContext } from '../../app/contexts/ReadyContext';
 
 type HeaderProps = {
   activeTitle: string;

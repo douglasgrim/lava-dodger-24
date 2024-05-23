@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ReadyContext } from '../contexts/ReadyContext';
+import { ReadyContext } from '../../app/contexts/ReadyContext';
 import './welcome-page.css';
-import welcomeImage from '../assets/images/welcomeImage.png';
+import welcomeImage from '../../assets/images/welcomeImage.png';
 
 function WelcomePage() {
   const { isReady } = useContext(ReadyContext);

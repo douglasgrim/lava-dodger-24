@@ -4,15 +4,11 @@ import {
   useState,
 } from 'react';
 
-import GridSquare from '../components/GridSquare';
-import { fetch } from '../mocks';
+import { fetch } from '../../mocks';
 import LoadingIndictor from '../components/LoadingIndicator';
-import { ResponseData } from '../types';
+import { IResponseData } from '../../types';
 import './interactive-page.css';
-
-interface rd {
-  groundSquares: number[][] | null;
-}
+import WorldMap from '../components/WorldMap';
 
 /**
  * @remarks In a larger app this would be referenced from ReactRouter
@@ -23,7 +19,7 @@ interface rd {
  */
 function InteractivePage():ReactElement | null {
 
-  let [data, setData] = useState<ResponseData>({
+  let [data, setData] = useState<IResponseData>({
     groundSquares: undefined,
   });
   const [isLoading, setIsLoading] = useState(true);
@@ -40,25 +36,11 @@ function InteractivePage():ReactElement | null {
     return () => {};
   }, []);
 
-  const { groundSquares = [[]]} = data;
-
-  // if (!groundSquares) {
-  //   return null;
-  // }
-
   return (
     <div className="page interactive-page">
-      <div className="map-container">
-        <LoadingIndictor isLoading={true} />
-        <div className={ `map ${isLoading ? '' : 'loaded'}`}>
-          {
-              groundSquares.map((arr) => (
-                  <div className="grid-row">
-                      {arr.map((val) => <GridSquare groundType={val} />)}
-                  </div>
-              ))
-          }
-        </div>
+      <div className="world-map-container">
+        <LoadingIndictor isLoading={isLoading} />
+        <WorldMap data={data} isLoading={isLoading} />
       </div>
     </div>
   );

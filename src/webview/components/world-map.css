@@ -1,27 +1,24 @@
-.interactive-page {
-  overflow: hidden;
-}
 
-.map {
+.world-map {
   position: absolute;
   width: 5000px;
   height: 5000px;
   opacity: 0;
   transition: opacity 1s;
-  background-color: black;
   ;
 }
 
-.map.loaded {
+.world-map.loaded {
   opacity: 1;
 }
 
-.map-container {
+.world-map-container {
   position: relative;
   overflow: hidden;
   width: 50vw;
-  height: 76vh;
+  height: 88vh;
   border: solid 3px white;
+  background: #312524;
 }
 
 .grid-row {

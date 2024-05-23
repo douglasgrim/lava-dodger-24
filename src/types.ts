@@ -10,12 +10,12 @@ export type Position = {
   y: number;
 };
 
-export interface ResponseData {
+export interface IResponseData {
   startingPosition?: Position;
   goal?: Position;
   groundSquares: number[][] | undefined;
 }
 
 export type MockResponse = {
-  json: Promise<ResponseData>;
+  json: Promise<IResponseData>;
 };

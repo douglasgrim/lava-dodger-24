@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+
 
 /**
  * @returns - nothing. Kicks off React tree. Good place for adding
@@ -12,7 +14,8 @@ const index = (): void => {
   );
   root.render(
     <React.StrictMode>
-      <App />
+
+        <App />
     </React.StrictMode>
   );  
 }

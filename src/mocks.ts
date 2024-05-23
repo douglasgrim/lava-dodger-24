@@ -1,4 +1,4 @@
-import { GroundType, Position, MockResponse, ResponseData } from "./types";
+import { GroundType, Position, MockResponse, IResponseData } from "./types";
 
 const delay = (timems: number):Promise<undefined> => new Promise((resolve) => {
   setTimeout(() => {
@@ -11,7 +11,7 @@ const rnd = (low: number, high: number) => Math.floor(Math.random() * (high - lo
 /**
  * @returns mock payload - this will be massively refactored to use a REST or GraphQL API
  */
-export const fetch = async (...rest: any[]): Promise<ResponseData> => {
+export const fetch = async (...rest: any[]): Promise<IResponseData> => {
   const groundColumn = Array(50).fill(0).map(() => Array(50).fill(0));
   const groundSquares = groundColumn.map((col) => {
       return col.map(() => Math.floor(Math.random() * Object.keys(GroundType).length / 2))
@@ -25,7 +25,7 @@ export const fetch = async (...rest: any[]): Promise<ResponseData> => {
     y: rnd(0,50),
   }
 
-  await delay(5000);
+  await delay(1500);
 
   return {
     startingPosition,

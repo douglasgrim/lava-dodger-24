@@ -1,9 +1,7 @@
-import { ReactElement, StyleHTMLAttributes } from 'react';
+import { ReactElement } from 'react';
 
-import loadingIcon from '../assets/images/loadingIcon.png';
+import loadingIcon from '../../assets/images/loadingIcon.png';
 import './loading-indicator.css';
-
-type LoadingType = ReactElement | null;
 
 interface PropTypes {
   isLoading: boolean;
