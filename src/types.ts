@@ -5,7 +5,17 @@ export enum GroundType {
   Mud,
 }
 
-export type ReadyContent = {
-  isReady: boolean
-  setIsReady: () => void
+export type Position = {
+  x: number;
+  y: number;
+};
+
+export interface ResponseData {
+  startingPosition?: Position;
+  goal?: Position;
+  groundSquares: number[][] | undefined;
 }
+
+export type MockResponse = {
+  json: Promise<ResponseData>;
+};

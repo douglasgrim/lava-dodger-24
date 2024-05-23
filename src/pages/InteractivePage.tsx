@@ -1,46 +1,67 @@
-import { ReactElement, useContext } from 'react';
+import {
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react';
 
 import GridSquare from '../components/GridSquare';
-import { ReadyContext } from '../contexts/ReadyContext';
-import { GroundType } from '../types';
+import { fetch } from '../mocks';
+import LoadingIndictor from '../components/LoadingIndicator';
+import { ResponseData } from '../types';
 import './interactive-page.css';
 
-  /**
-   * @remarks In a larger app this would be referenced from ReactRouter
-   * or something similar, like a nextJS route. In this case, it's attached
-   * to the app for simplicity
-   * 
-   * @returns React component representing the main "game page"
-   */
-function InteractivePage():ReactElement {
-  
-    const { isStarted } = useContext(ReadyContext);
+interface rd {
+  groundSquares: number[][] | null;
+}
 
-    const groundColumn = Array(50).fill(0).map(() => Array(50).fill(0));
-    const groundSquare = groundColumn.map((col) => {
-        return col.map(() => Math.floor(Math.random() * Object.keys(GroundType).length / 2))
-    });
+/**
+ * @remarks In a larger app this would be referenced from ReactRouter
+ * or something similar, like a nextJS route. In this case, it's attached
+ * to the app for simplicity
+ * 
+ * @returns React component representing the main "game page"
+ */
+function InteractivePage():ReactElement | null {
 
-    console.log(GroundType)
-    console.log(groundSquare)
+  let [data, setData] = useState<ResponseData>({
+    groundSquares: undefined,
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
-    return (
-      <div className="page interactive-page">
-        <div className="map-container">
-          <div className="map">
-            {
-                groundSquare.map((arr) => (
-                    <div>
-                        {arr.map((val) => <GridSquare groundType={val} />)}
-                    </div>
-                ))
-            }
-          </div>
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await fetch();
+      console.log(data);
+      setData(fetchedData);
+      setIsLoading(false);
+    }
+    fetchData();
+
+    return () => {};
+  }, []);
+
+  const { groundSquares = [[]]} = data;
+
+  // if (!groundSquares) {
+  //   return null;
+  // }
+
+  return (
+    <div className="page interactive-page">
+      <div className="map-container">
+        <LoadingIndictor isLoading={true} />
+        <div className={ `map ${isLoading ? '' : 'loaded'}`}>
+          {
+              groundSquares.map((arr) => (
+                  <div className="grid-row">
+                      {arr.map((val) => <GridSquare groundType={val} />)}
+                  </div>
+              ))
+          }
         </div>
       </div>
-    );
-
-    return <div>hello</div>;
+    </div>
+  );
 };
 
 export default InteractivePage;

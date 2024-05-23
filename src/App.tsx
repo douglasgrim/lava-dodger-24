@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import WelcomePage from './pages/WelcomePage';
 import InteractivePage from './pages/InteractivePage';
@@ -15,8 +16,13 @@ function App():ReactElement {
     <div className="app">
       <ReadyProvider>
         <Header activeTitle="Lava Dodger '24" />
-        <WelcomePage />
-        <InteractivePage />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/interactive" element={<InteractivePage />} />
+          </Routes>
+        </BrowserRouter>
       </ReadyProvider>
     </div>
   );

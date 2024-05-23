@@ -2,14 +2,18 @@
   overflow: hidden;
 }
 
-.interactive-page img {
-  width: 70px;
-}
-
 .map {
   position: absolute;
-  width: 2600px;
-  height: 2600px;
+  width: 5000px;
+  height: 5000px;
+  opacity: 0;
+  transition: opacity 1s;
+  background-color: black;
+  ;
+}
+
+.map.loaded {
+  opacity: 1;
 }
 
 .map-container {
@@ -17,4 +21,16 @@
   overflow: hidden;
   width: 50vw;
   height: 76vh;
+  border: solid 3px white;
+}
+
+.grid-row {
+  width: 100%;
+  margin: 2px 0;
+}
+
+.grid-row img {
+  width: 50px;
+  margin: 0 1px;
+  border: solid 1px white;
 }
