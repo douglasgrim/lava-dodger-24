@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import WelcomePage from './webview/pages/WelcomePage';
-import InteractivePage from './webview/pages/InteractivePage';
-import Header from './webview/components/Header';
-import { ReadyProvider } from './app/contexts/ReadyContext';
+import WelcomePage from './pages/WelcomePage';
+import InteractivePage from './pages/InteractivePage';
+import Header from './components/Header';
+import { ReadyProvider } from '../app/contexts/ReadyContext';
 import './app.css';
 
 /**

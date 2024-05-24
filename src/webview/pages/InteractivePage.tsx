@@ -4,11 +4,12 @@ import {
   useState,
 } from 'react';
 
-import { fetch } from '../../mocks';
+import { fetch } from '../../app/mocks';
 import LoadingIndictor from '../components/LoadingIndicator';
-import { IResponseData } from '../../types';
+import { IResponseData } from '../../app/types';
 import './interactive-page.css';
 import WorldMap from '../components/WorldMap';
+import Directions from '../components/Directions';
 
 /**
  * @remarks In a larger app this would be referenced from ReactRouter
@@ -21,6 +22,7 @@ function InteractivePage():ReactElement | null {
 
   let [data, setData] = useState<IResponseData>({
     groundSquares: undefined,
+    directionList: [],
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,15 +34,19 @@ function InteractivePage():ReactElement | null {
       setIsLoading(false);
     }
     fetchData();
-
     return () => {};
   }, []);
 
+  const { directionList } = data;
+
   return (
     <div className="page interactive-page">
-      <div className="world-map-container">
-        <LoadingIndictor isLoading={isLoading} />
-        <WorldMap data={data} isLoading={isLoading} />
+      <div className="interactive-page">
+        <div className="world-map-container">
+          <LoadingIndictor isLoading={isLoading} />
+          <WorldMap data={data} isLoading={isLoading} />
+        </div>
+        <Directions directionList={directionList}/>
       </div>
     </div>
   );

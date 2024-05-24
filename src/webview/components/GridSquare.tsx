@@ -1,10 +1,8 @@
 import { ReactElement } from "react";
+import { GroundType } from "../../app/types";
 
-import { GroundType } from "../../types";
-import lavaImg from '../../assets/images/lava.png';
-import mudImg from '../../assets/images/mud.png';
-import normalImg from '../../assets/images/normal.png';
-import speederImg from '../../assets/images/speeder.png';
+
+import { getImage } from "../../assets/getImage";
 
 export type GridSquareProps = {
   groundType: GroundType;
@@ -15,16 +13,16 @@ function GridSquare({
 }:GridSquareProps): ReactElement {
   switch(groundType) {
   case GroundType.Speeder:
-    return <img src={speederImg} />;
+    return <img src={getImage('speeder')} />;
     break;
   case GroundType.Mud:
-    return <img src={mudImg} />;
+    return <img src={getImage('mud')} />;
     break;
   case GroundType.Lava:
-    return <img src={lavaImg} />;
+    return <img src={getImage('lava')} />;
     break;
   default:
-    return <img src={normalImg} />;
+    return <img src={getImage('normal')} />;
   }
 }
 

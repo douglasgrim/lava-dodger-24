@@ -1,6 +1,6 @@
 import { ReactElement  } from 'react';
 
-import { IResponseData } from '../../types';
+import { IResponseData } from '../../app/types';
 import GridSquare from './GridSquare';
 import './world-map.css';
 

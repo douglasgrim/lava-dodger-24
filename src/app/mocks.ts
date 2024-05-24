@@ -1,5 +1,8 @@
 import { GroundType, Position, MockResponse, IResponseData } from "./types";
 
+import heroImg from '../../../assets/images/hero.png';
+
+
 const delay = (timems: number):Promise<undefined> => new Promise((resolve) => {
   setTimeout(() => {
     resolve(undefined);
@@ -31,5 +34,14 @@ export const fetch = async (...rest: any[]): Promise<IResponseData> => {
     startingPosition,
     goal,
     groundSquares,
+    directionList: [
+      {
+        text: 'Your goal is to get the hero from the upper left hand side of the grid to the lower right, where you will see a lovely house to save said hero from the dangers of the world.',
+      },
+      {
+        text: 'This is the hero in question, and this hero has a lot of lives. Sports cars help the hero get home faster, mud slows the journey down, and lava is just nasty to our hero, who has a lot of lives',
+        imageUrl: 'hero',
+      }
+    ]
   };
 };

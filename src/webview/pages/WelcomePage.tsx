@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { ReadyContext } from '../../app/contexts/ReadyContext';
 import './welcome-page.css';
-import welcomeImage from '../../assets/images/welcomeImage.png';
+// import welcomeImage from '../../assets/images/welcomeImage.png';
+import { getImage } from '../../assets/getImage';
 
 function WelcomePage() {
   const { isReady } = useContext(ReadyContext);
 
   const style = {
-    background: `url(${welcomeImage}) no-repeat 50%`,
+    background: `url(${getImage('welcomeImage')}) no-repeat 50%`,
     backgroundSize: 'contain',
   };
   

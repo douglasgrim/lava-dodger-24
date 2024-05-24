@@ -1,3 +1,4 @@
 .interactive-page {
   overflow: hidden;
+  display: flex;
 }

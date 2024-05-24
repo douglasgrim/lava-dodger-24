@@ -13,6 +13,7 @@
 }
 
 .world-map-container {
+  display: flex;
   position: relative;
   overflow: hidden;
   width: 50vw;

@@ -1,0 +1,22 @@
+.directions {
+  position: relative;
+  margin: 10px;
+  border: solid 1px white;
+  padding: 10px;
+  color: white;
+  width: 25vw;
+}
+
+.verbiage {
+  margin: 20px 0;
+  display: flex;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.verbiage img {
+  margin-right: 10px;
+  height: 70px;
+  margin: 5px;
+  border: solid 1px #FFFFFF44
+}
