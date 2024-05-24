@@ -5,7 +5,7 @@ import mud from './images/mud.png';
 import normal from './images/normal.png';
 import speeder from './images/speeder.png';
 import welcomeImage from './images/welcomeImage.png';
-import goal from './images/welcomeImage.png';
+import goal from './images/goal.png';
 
 import { ImageType } from '../app/types';
 
@@ -14,7 +14,7 @@ imageMap.set('hero', hero);
 imageMap.set('lava', lava);
 imageMap.set('loadingIcon', loadingIcon);
 imageMap.set('mud', mud);
-imageMap.set('normal', normal);
+imageMap.set('blank', normal);
 imageMap.set('speeder', speeder);
 imageMap.set('welcomeImage', welcomeImage);
 imageMap.set('goal', goal);

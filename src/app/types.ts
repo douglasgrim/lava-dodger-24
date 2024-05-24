@@ -16,7 +16,7 @@ export type ImageType = (
   | 'lava'
   | 'loadingIcon'
   | 'mud'
-  | 'normal'
+  | 'blank'
   | 'speeder'
   | 'welcomeImage'
 );

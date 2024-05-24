@@ -22,7 +22,7 @@ function GridSquare({
     return <img src={getImage('lava')} />;
     break;
   default:
-    return <img src={getImage('normal')} />;
+    return <img src={getImage('blank')} />;
   }
 }
 

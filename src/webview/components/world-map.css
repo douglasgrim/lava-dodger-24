@@ -17,9 +17,10 @@
   position: relative;
   overflow: hidden;
   width: 50vw;
-  height: 88vh;
+  height: 86vh;
   border: solid 3px white;
   background: #312524;
+  margin-top: 1vh;
 }
 
 .grid-row {

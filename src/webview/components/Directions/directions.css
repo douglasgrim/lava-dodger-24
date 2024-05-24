@@ -5,8 +5,13 @@
   padding: 10px;
   color: white;
   width: 25vw;
+  overflow: auto;
 }
 
+.directions h1 {
+  margin: 0;
+  text-align: center;
+}
 .verbiage {
   margin: 20px 0;
   display: flex;
