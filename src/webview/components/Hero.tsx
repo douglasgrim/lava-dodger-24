@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/state/store';
-import { getImage } from '../../assets/getImage';
+import { getImage } from '../utils/getImage';
 
 
 

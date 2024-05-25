@@ -4,13 +4,6 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import App from './webview/App';
 
-
-// const store = configureStore({
-//   reducer: {
-//     rootReducer,
-//   }
-// );
-
 /**
  * @returns - nothing. Top level of react tree with connected redux
  */

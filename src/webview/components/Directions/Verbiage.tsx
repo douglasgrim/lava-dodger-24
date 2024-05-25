@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { VerbiageType } from '../../../app/types';
-import { getImage } from '../../../assets/getImage';
+import { getImage } from '../../utils/getImage';
 import './directions.css';
 
 const Verbiage = ({ text, imageUrl }: VerbiageType): ReactElement => {

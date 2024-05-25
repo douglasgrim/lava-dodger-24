@@ -5,7 +5,7 @@ import { RootState } from '../../app/state/store';
 // import { ReadyContext } from '../../app/_contexts/ReadyContext';
 import './welcome-page.css';
 // import welcomeImage from '../../assets/images/welcomeImage.png';
-import { getImage } from '../../assets/getImage';
+import { getImage } from '../utils/getImage';
 
 function WelcomePage() {
   const isReady = useSelector((state: RootState) => state.loadedData.appReady);

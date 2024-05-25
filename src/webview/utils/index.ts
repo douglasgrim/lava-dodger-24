@@ -1,3 +1,5 @@
+import { getImage } from './getImage';
+
 export type GridPlacement = {
   x: number,
   y: number,
@@ -34,3 +36,5 @@ export const getMapPosition = ({
 
   return { mapX, mapY, heroX, heroY };
 }
+
+export { getImage };

@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { GroundType } from "../../app/types";
 
 
-import { getImage } from "../../assets/getImage";
+import { getImage } from "../utils/getImage";
 
 export type GridSquareProps = {
   groundType: GroundType;
