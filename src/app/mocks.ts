@@ -62,6 +62,5 @@ const directionList: VerbiageType[] = [
     goalPosition,
     groundSquares,
     directionList,
-    isLoading: false,
   };
 };

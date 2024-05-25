@@ -1,43 +1,38 @@
-import { ReactElement, useEffect, useState, useContext } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { AppDispatch } from '../../app/state/store';
+
 import './header.css';
-import { ReadyContext } from '../../app/contexts/ReadyContext';
+import { setAppReady } from '../../app/state/reducers/loadedDataSlice';
+import { useAnimatedTitle } from '../../app/hooks/useAnimatedTitle';
 
 type HeaderProps = {
   activeTitle: string;
+  firstYear?: number,
+  lastYear?: number,
 };
 
 const TYPING_DELAY = 75;
 
 const Header = ({
   activeTitle,
+  firstYear = 1983,
+  lastYear = 2024,
 }:HeaderProps): ReactElement => {
-  const titleWords = activeTitle.split('');
-  const [title, setTitle] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { setIsReady } = useContext(ReadyContext);
+  const { titleWithYear, isComplete } = useAnimatedTitle({
+    activeTitle,
+    firstYear,
+    lastYear,
+  });
 
-  useEffect(() => {
-    console.log('use effect invoked')
-    let timeout: ReturnType<typeof setTimeout>;
-    const buildTitle = () => {
-      if (wordIndex < titleWords.length) {
-        const word = titleWords[wordIndex];
-        setTitle(`${title}${word}`);
-        setWordIndex(wordIndex + 1);
-        timeout = setTimeout(() => {
-          buildTitle();
-        }, TYPING_DELAY);
-      } else {
-        setIsReady(true);
-      }
-    }
-    timeout = setTimeout(() => buildTitle(), TYPING_DELAY);
-    return () => {
-      clearTimeout(timeout);
-    }
-  }, [title, wordIndex, titleWords, setIsReady]);
-  return <div className="header">{title}</div>
+  if (isComplete) {
+    dispatch(setAppReady(true));
+  }
+
+  return <div className="header">{titleWithYear}</div>
 }
 
 export default Header;

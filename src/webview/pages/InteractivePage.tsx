@@ -10,6 +10,7 @@ import { AppDispatch } from '../../app/state/store';
 import {
   setDirectionList,
   setGroundSquares,
+  setIsLoaded,
   setIsLoading,
 } from '../../app/state/reducers/loadedDataSlice';
 
@@ -41,6 +42,7 @@ function InteractivePage():ReactElement | null {
       dispatch(setIsLoading(true));
       const data = await fetch();
       dispatch(setIsLoading(false));
+      dispatch(setIsLoaded(true));
       const { directionList, groundSquares } = data;
       dispatch(setDirectionList(directionList));
       dispatch(setGroundSquares(groundSquares));
@@ -52,7 +54,7 @@ function InteractivePage():ReactElement | null {
   return (
     <div className="page interactive-page">
       <div className="interactive-page">
-        <div className="world-map-container"  ref={containerRef}>
+        <div className="world-map-container" ref={containerRef}>
           <LoadingIndicator />
           <WorldMap
             containerWidth={width}

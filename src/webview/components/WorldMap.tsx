@@ -22,7 +22,12 @@ const WorldMap = ({
   containerHeight
 }: ReactProps):ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, groundSquares, heroPosition } = useSelector((state: RootState) => state.loadedData);
+  const {
+    isLoading,
+    isLoaded,
+    groundSquares,
+    heroPosition,
+  } = useSelector((state: RootState) => state.loadedData);
   const { x, y } = heroPosition;
   const { mapX, mapY } = getMapPosition({
     x,
@@ -48,13 +53,13 @@ const WorldMap = ({
       }}
     >
     {
-        groundSquares && groundSquares.map((arr, rowKey) => (
+        isLoaded && groundSquares.map((arr, rowKey) => (
             <div className="grid-row" key={rowKey}>
                 {arr.map((val, colKey) => <GridSquare key={colKey} groundType={val} />)}
             </div>
         ))
     }
-    <Hero />
+    { isLoaded && <Hero /> }
   </div>
   );
 };

@@ -2,11 +2,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { GroundSquaresType, VerbiageType, Position, IResponseData } from '../../types';
 
 const initialState: IResponseData = {
-  groundSquares:  undefined,
+  groundSquares:  [[]],
   heroPosition: { x: 5, y: 5 },
   goalPosition: { x: 45, y: 45 },
   directionList: [],
   isLoading: false,
+  isLoaded: false,
+  appReady: false,
 };
 
 const loadedDataSlice = createSlice({
@@ -28,6 +30,12 @@ const loadedDataSlice = createSlice({
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
+    },
+    setIsLoaded: (state, action: PayloadAction<boolean>) => {
+      state.isLoaded = action.payload;
+    },
+    setAppReady: (state, action: PayloadAction<boolean>) => {
+      state.appReady = action.payload;
     }
   },
 });
@@ -38,6 +46,8 @@ export const {
   setGoalPosition,
   setDirectionList,
   setIsLoading,
+  setIsLoaded,
+  setAppReady,
 } = loadedDataSlice.actions;
 
 export default loadedDataSlice.reducer;

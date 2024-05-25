@@ -21,7 +21,7 @@ export type Position = {
   y: number;
 };
 
-export type GroundSquaresType = number[][] | undefined;
+export type GroundSquaresType = number[][];
 
 export type VerbiageType = {
   text: string;
@@ -33,7 +33,9 @@ export interface IResponseData {
   goalPosition: Position;
   groundSquares: GroundSquaresType;
   directionList: VerbiageType[];
-  isLoading: boolean;
+  isLoading?: boolean;
+  isLoaded?: boolean;
+  appReady?: boolean;
 }
 
 export type MockResponse = {
