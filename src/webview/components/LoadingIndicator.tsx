@@ -1,17 +1,18 @@
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/state/store';
 
 import loadingIcon from '../../assets/images/loadingIcon.png';
 import './loading-indicator.css';
 
 interface PropTypes {
-  isLoading: boolean;
   className?: string;
 };
 
 const LoadingIndictor = ({
-  isLoading,
   className = 'loading-indicator',
 }: PropTypes):ReactElement => {
+  const isLoading = useSelector(({ loadedData: { isLoading } }: RootState) => isLoading);
   if (!isLoading) {
     return <></>;
   }

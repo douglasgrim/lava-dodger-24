@@ -1,15 +1,26 @@
 import {
   ReactElement,
   useEffect,
-  useState,
+  useRef,
 } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/state/store';
+
+import {
+  setDirectionList,
+  setGroundSquares,
+  setIsLoading,
+} from '../../app/state/reducers/loadedDataSlice';
+
 import { fetch } from '../../app/mocks';
-import LoadingIndictor from '../components/LoadingIndicator';
-import { IResponseData } from '../../app/types';
+import LoadingIndicator from '../components/LoadingIndicator';
+
 import './interactive-page.css';
 import WorldMap from '../components/WorldMap';
 import Directions from '../components/Directions';
+
+import { useContainerDimensions } from '../../app/hooks/useContainerDimensions';
 
 /**
  * @remarks In a larger app this would be referenced from ReactRouter
@@ -19,34 +30,36 @@ import Directions from '../components/Directions';
  * @returns React component representing the main "game page"
  */
 function InteractivePage():ReactElement | null {
+  const dispatch = useDispatch<AppDispatch>();
 
-  let [data, setData] = useState<IResponseData>({
-    groundSquares: undefined,
-    directionList: [],
-  });
-  const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef(null);
+
+  const { width, height } = useContainerDimensions(containerRef);
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedData = await fetch();
-      console.log(data);
-      setData(fetchedData);
-      setIsLoading(false);
+      dispatch(setIsLoading(true));
+      const data = await fetch();
+      dispatch(setIsLoading(false));
+      const { directionList, groundSquares } = data;
+      dispatch(setDirectionList(directionList));
+      dispatch(setGroundSquares(groundSquares));
     }
     fetchData();
     return () => {};
   }, []);
 
-  const { directionList } = data;
-
   return (
     <div className="page interactive-page">
       <div className="interactive-page">
-        <div className="world-map-container">
-          <LoadingIndictor isLoading={isLoading} />
-          <WorldMap data={data} isLoading={isLoading} />
+        <div className="world-map-container"  ref={containerRef}>
+          <LoadingIndicator />
+          <WorldMap
+            containerWidth={width}
+            containerHeight={height}
+          />
         </div>
-        <Directions directionList={directionList}/>
+        <Directions />
       </div>
     </div>
   );

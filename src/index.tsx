@@ -1,12 +1,18 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import { store } from './app/state/store';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import App from './webview/App';
 
 
+// const store = configureStore({
+//   reducer: {
+//     rootReducer,
+//   }
+// );
+
 /**
- * @returns - nothing. Kicks off React tree. Good place for adding
- * Redux, ApolloJS, etc.
+ * @returns - nothing. Top level of react tree with connected redux
  */
 const index = (): void => {
   const root = ReactDOM.createRoot(
@@ -14,8 +20,9 @@ const index = (): void => {
   );
   root.render(
     <React.StrictMode>
-
+      <Provider store={store}>
         <App />
+      </Provider>
     </React.StrictMode>
   );  
 }

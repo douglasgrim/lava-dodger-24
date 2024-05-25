@@ -1,4 +1,4 @@
-import { GroundType, Position, ImageType, IResponseData, VerbiageType } from './types';
+import { GroundType, Position, IResponseData, VerbiageType } from './types';
 
 const delay = (timems: number):Promise<undefined> => new Promise((resolve) => {
   setTimeout(() => {
@@ -16,13 +16,13 @@ export const fetch = async (...rest: any[]): Promise<IResponseData> => {
   const groundSquares = groundColumn.map((col) => {
       return col.map(() => Math.floor(Math.random() * Object.keys(GroundType).length / 2))
   });
-  const startingPosition: Position = {
-    x: rnd(0, 50),
-    y: rnd(0, 50),
+  const heroPosition: Position = {
+    x: rnd(2, 8),
+    y: rnd(2, 8),
   }
-  const goal: Position = {
-    x: rnd(0, 50),
-    y: rnd(0,50),
+  const goalPosition: Position = {
+    x: rnd(44, 48),
+    y: rnd(44, 48),
   }
 
   await delay(1500);
@@ -58,9 +58,10 @@ const directionList: VerbiageType[] = [
 ]
 
   return {
-    startingPosition,
-    goal,
+    heroPosition,
+    goalPosition,
     groundSquares,
     directionList,
+    isLoading: false,
   };
 };

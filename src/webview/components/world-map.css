@@ -4,8 +4,7 @@
   width: 5000px;
   height: 5000px;
   opacity: 0;
-  transition: opacity 1s;
-  ;
+  transition: 1s;
 }
 
 .world-map.loaded {

@@ -1,27 +1,60 @@
 import { ReactElement  } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../app/state/store';
 
-import { IResponseData } from '../../app/types';
+
+import Hero from './Hero';
 import GridSquare from './GridSquare';
 import './world-map.css';
 
-interface PropTypes {
-  isLoading: boolean;
-  data: IResponseData;
-};
+import {
+  setHeroPosition,
+} from '../../app/state/reducers/loadedDataSlice';
+import { getMapPosition } from '../utils';
 
-const WorldMap = (props: PropTypes):ReactElement => {
-  const { data, isLoading } = props;
-  const { groundSquares = [[]] } = data;
+type ReactProps = {
+  containerWidth: number,
+  containerHeight: number,
+}
+
+const WorldMap = ({
+  containerWidth,
+  containerHeight
+}: ReactProps):ReactElement => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading, groundSquares, heroPosition } = useSelector((state: RootState) => state.loadedData);
+  const { x, y } = heroPosition;
+  const { mapX, mapY } = getMapPosition({
+    x,
+    y,
+    mapWidth: containerWidth,
+    mapHeight: containerHeight
+  });
+
+  console.log(mapX, mapY);
+
+  const style = {
+    top: `${-mapY}px`,
+    left: `${-mapX}px`,
+  }
 
   return (
-    <div className={ `world-map ${isLoading ? '' : 'loaded'}`}>
+    <div
+      className={ `world-map ${isLoading ? '' : 'loaded'}`}
+      style={style}
+      onClick={() => {
+        dispatch(setHeroPosition({ x: x + 1, y: y + 1 }));
+        console.log('clicking along', heroPosition)
+      }}
+    >
     {
-        groundSquares.map((arr) => (
-            <div className="grid-row">
-                {arr.map((val) => <GridSquare groundType={val} />)}
+        groundSquares && groundSquares.map((arr, rowKey) => (
+            <div className="grid-row" key={rowKey}>
+                {arr.map((val, colKey) => <GridSquare key={colKey} groundType={val} />)}
             </div>
         ))
     }
+    <Hero />
   </div>
   );
 };
