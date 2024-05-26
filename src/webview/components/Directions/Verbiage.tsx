@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { VerbiageType } from '../../../app/types';
 import { getImage } from '../../utils/getImage';
-import './directions.css';
+import '../sidebars.css';
 
 const Verbiage = ({ text, imageUrl }: VerbiageType): ReactElement => {
   return (

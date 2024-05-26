@@ -29,25 +29,25 @@ const gameComponentsSlice = createSlice({
     },
     setHeroPosition: (state, action: PayloadAction<Position>) => {
       const { x, y } = action.payload;
-      // const groundConditions = state.groundSquares[y][x];
-      // let { health, moves } = state.heroStatus;
-      // switch (groundConditions) {
-      // case GroundType.Lava:
-      //   health -= 50;
-      //   moves -= 10;
-      //   break;
-      // case GroundType.Normal:
-      //   moves -= 1;
-      //   break;
-      // case GroundType.Speeder:
-      //   health -= 5;
-      //   break;
-      // case GroundType.Mud:
-      //   health -= 10;
-      //   moves -= 5;
-      //   break;
-      // }
-      // state.heroStatus = { health, moves };
+      const groundConditions = state.groundSquares[y][x];
+      let { health, moves } = state.heroStatus;
+      switch (groundConditions) {
+      case GroundType.Lava:
+        health -= 50;
+        moves -= 10;
+        break;
+      case GroundType.Normal:
+        moves -= 1;
+        break;
+      case GroundType.Speeder:
+        health -= 5;
+        break;
+      case GroundType.Mud:
+        health -= 10;
+        moves -= 5;
+        break;
+      }
+      state.heroStatus = { health, moves };
       state.heroPosition = action.payload;
     },
     setGoalPosition: (state, action: PayloadAction<Position>) => {

@@ -16,12 +16,20 @@ export const WorldGrid = (): ReactElement => {
       {
         groundSquares.map((rowArr, rowKey) => (
           <div className="grid-row" key={rowKey}>
-              {rowArr.map((groundValue, colKey) => <GridSquare key={colKey} groundType={groundValue} />)}
+              {rowArr.map((groundValue, colKey) => (
+                <GridSquare
+                  key={colKey}
+                  groundType={groundValue}
+                  x={colKey}
+                  y={rowKey}
+                />))
+              }
           </div>
         ))
       }
     </div>
   );
+  console.log('render time', Date.now() - t0);
   return bigMap;
 
 }

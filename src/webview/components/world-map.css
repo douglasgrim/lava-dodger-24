@@ -19,7 +19,8 @@
   height: 86vh;
   border: solid 3px white;
   background: #312524;
-  margin-top: 1vh;
+  margin: 1vh 0;
+  box-sizing: border-box;
 }
 
 .grid-row {

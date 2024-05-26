@@ -21,6 +21,7 @@ import {
 
 import { fetch } from '../../app/mocks';
 import LoadingIndicator from '../components/LoadingIndicator';
+import HeroStatsDisplay from '../components/HeroStatsDisplay';
 
 import './interactive-page.css';
 import WorldMap from '../components/WorldMap';
@@ -66,6 +67,7 @@ function InteractivePage():ReactElement | null {
   return (
     <div className="page interactive-page">
       <div className="interactive-page">
+        <HeroStatsDisplay />
         <div className="world-map-container" ref={containerRef}>
           <LoadingIndicator />
           <WorldMap

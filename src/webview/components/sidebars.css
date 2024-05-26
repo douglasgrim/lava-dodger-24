@@ -1,14 +1,14 @@
-.directions {
+.sidebars {
   position: relative;
-  margin: 10px;
+  margin: 1vh;
   border: solid 1px white;
   padding: 10px;
   color: white;
-  width: 25vw;
+  width: 21vw;
   overflow: auto;
 }
 
-.directions h1 {
+.sidebars h1 {
   margin: 0;
   text-align: center;
 }
