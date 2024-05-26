@@ -6,10 +6,11 @@ import Verbiage from './Verbiage';
 import { VerbiageType } from '../../../app/types';
 
 const Directions = ():ReactElement => {
-  const directionList = useSelector(( state: RootState) => state.loadedData.directionList);
+  const directionList = useSelector(( state: RootState) => state.gameEvents.directionList);
+  const { heroStatus: { health, moves } } = useSelector((state: RootState) => state.gameComponents);
   return (
     <div className="directions">
-      <h1>Directions</h1>
+      <h1>Directions {health} {moves} </h1>
       { 
         directionList.map((item: VerbiageType, key: number) => (
           <Verbiage 

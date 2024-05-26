@@ -8,11 +8,16 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../app/state/store';
 
 import {
-  setDirectionList,
   setGroundSquares,
+  setHeroPosition,
+  setGoalPosition,
+} from '../../app/state/reducers/gameComponentsSlice';
+
+import {
+  setDirectionList,
   setIsLoaded,
-  setIsLoading,
-} from '../../app/state/reducers/loadedDataSlice';
+  setIsLoading,  
+} from '../../app/state/reducers/gameEventsSlice';
 
 import { fetch } from '../../app/mocks';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -43,9 +48,16 @@ function InteractivePage():ReactElement | null {
       const data = await fetch();
       dispatch(setIsLoading(false));
       dispatch(setIsLoaded(true));
-      const { directionList, groundSquares } = data;
+      const {
+        directionList,
+        groundSquares,
+        heroPosition,
+        goalPosition,
+      } = data;
       dispatch(setDirectionList(directionList));
       dispatch(setGroundSquares(groundSquares));
+      dispatch(setHeroPosition(heroPosition));
+      dispatch(setGoalPosition(goalPosition));
     }
     fetchData();
     return () => {};

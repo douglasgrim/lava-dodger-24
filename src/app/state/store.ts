@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loadedDataReducer from "./reducers/loadedDataSlice";
+// import loadedDataReducer from "./reducers/_loadedDataSlice";
+import gameComponentsReducer from "./reducers/gameComponentsSlice";
+import gameEventsReducer from "./reducers/gameEventsSlice";
 
 export const store = configureStore({
   reducer: {
-    loadedData: loadedDataReducer,
+    gameComponents: gameComponentsReducer,
+    gameEvents: gameEventsReducer,
   },
 });
 

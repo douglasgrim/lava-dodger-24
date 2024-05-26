@@ -1,10 +1,18 @@
-.hero {
+.world-entity {
   position: absolute;
   z-index: 2;
-  top: 200px;
-  left: 0;
   width: 50px;
   height: 50px;
+}
+
+.world-entity img {
+  position: absolute;
+}
+
+.hero {
+  z-index: 3;
+  top: 200px;
+  left: 0;
   background-color: #d48919c9;
   transition: top 0.2s, left 0.2s;
   border-radius: 40px;
@@ -19,13 +27,28 @@
   position: absolute;
 }
 
+.goal img {
+  width: 50px;
+  height: 50px;
+  left: -20px;
+  top: -20px;
+  border: solid 20px rgba(3, 247, 3, 0.7);
+  animation: border-glow linear 1s infinite;
+  border-radius: 10px;
+}
+
 @keyframes glow {
   50% {
     background-color: #d489194f;
-
   }
   100% {
   background-color: #d48919c9;
     ;
+  }
+}
+
+@keyframes border-glow {
+  50% {
+    border-color: rgba(3, 247, 3, 0.4)
   }
 }

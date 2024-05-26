@@ -1,10 +1,6 @@
-import { ReactElement, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { AppDispatch } from '../../app/state/store';
+import { ReactElement } from 'react';
 
 import './header.css';
-import { setAppReady } from '../../app/state/reducers/loadedDataSlice';
 import { useAnimatedTitle } from '../../app/hooks/useAnimatedTitle';
 
 type HeaderProps = {
@@ -20,17 +16,11 @@ const Header = ({
   firstYear = 1983,
   lastYear = 2024,
 }:HeaderProps): ReactElement => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { titleWithYear, isComplete } = useAnimatedTitle({
+  const { titleWithYear } = useAnimatedTitle({
     activeTitle,
     firstYear,
     lastYear,
   });
-
-  if (isComplete) {
-    dispatch(setAppReady(true));
-  }
 
   return <div className="header">{titleWithYear}</div>
 }

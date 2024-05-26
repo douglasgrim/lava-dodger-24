@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../state/store';
+import { setAppReady } from '../state/reducers/gameEventsSlice';
 
 const TYPING_DELAY = 100;
 
 type AnimatedTitle = {
   activeTitle: string,
-  firstYear?: number,
-  lastYear?: number,
+  firstYear: number,
+  lastYear: number,
 }
 
 export const useAnimatedTitle = ({
   activeTitle,
-  firstYear = 1982,
-  lastYear = 2024,
+  firstYear,
+  lastYear,
 }: AnimatedTitle) => {
+  const dispatch = useDispatch<AppDispatch>();
   const titleWords = activeTitle.split('');
   const [isComplete, setIsComplete] = useState(false);
   const [headerState, setHeaderState] = useState(0);
@@ -40,7 +44,7 @@ export const useAnimatedTitle = ({
         setTitleWithYear(`${title} '${displayedYear.toString().slice(-2)}`);
         setDisplayedYear(displayedYear + 1);
       } else {
-        setIsComplete(true);
+        dispatch(setAppReady(true))
       }   
     }
   
@@ -59,7 +63,6 @@ export const useAnimatedTitle = ({
   }, [title, wordIndex, titleWords]);
   return { 
     titleWithYear,
-    isComplete,
   }
 }
 

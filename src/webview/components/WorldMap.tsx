@@ -1,16 +1,14 @@
-import { ReactElement  } from 'react';
+import { ReactElement, KeyboardEvent  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../app/state/store';
 
-
 import Hero from './Hero';
+import Goal from './Goal';
 import GridSquare from './GridSquare';
 import './world-map.css';
 
-import {
-  setHeroPosition,
-} from '../../app/state/reducers/loadedDataSlice';
 import { getMapPosition } from '../utils';
+import { WorldGrid } from './WorldGrid';
 
 type ReactProps = {
   containerWidth: number,
@@ -22,12 +20,10 @@ const WorldMap = ({
   containerHeight
 }: ReactProps):ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
-  const {
-    isLoading,
-    isLoaded,
-    groundSquares,
-    heroPosition,
-  } = useSelector((state: RootState) => state.loadedData);
+
+  const { heroPosition } = useSelector((state: RootState) => state.gameComponents);
+  const { isLoaded, isLoading } = useSelector((state: RootState) => state.gameEvents);
+
   const { x, y } = heroPosition;
   const { mapX, mapY } = getMapPosition({
     x,
@@ -35,8 +31,6 @@ const WorldMap = ({
     mapWidth: containerWidth,
     mapHeight: containerHeight
   });
-
-  console.log(mapX, mapY);
 
   const style = {
     top: `${-mapY}px`,
@@ -47,19 +41,14 @@ const WorldMap = ({
     <div
       className={ `world-map ${isLoading ? '' : 'loaded'}`}
       style={style}
-      onClick={() => {
-        dispatch(setHeroPosition({ x: x + 1, y: y + 1 }));
-        console.log('clicking along', heroPosition)
-      }}
     >
-    {
-        isLoaded && groundSquares.map((arr, rowKey) => (
-            <div className="grid-row" key={rowKey}>
-                {arr.map((val, colKey) => <GridSquare key={colKey} groundType={val} />)}
-            </div>
-        ))
-    }
-    { isLoaded && <Hero /> }
+    { isLoaded && (
+      <>
+        <WorldGrid />
+        <Hero />
+        <Goal />
+      </> 
+    )}
   </div>
   );
 };

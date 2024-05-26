@@ -12,7 +12,7 @@ interface PropTypes {
 const LoadingIndictor = ({
   className = 'loading-indicator',
 }: PropTypes):ReactElement => {
-  const isLoading = useSelector(({ loadedData: { isLoading } }: RootState) => isLoading);
+  const isLoading = useSelector(({ gameEvents: { isLoading } }: RootState) => isLoading);
   if (!isLoading) {
     return <></>;
   }
