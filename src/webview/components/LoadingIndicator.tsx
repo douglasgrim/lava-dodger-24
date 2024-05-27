@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/state/store';
+import { getImage } from '../utils';
 
-import loadingIcon from '../../assets/images/loadingIcon.png';
 import './loading-indicator.css';
 
 interface PropTypes {
@@ -19,7 +19,7 @@ const LoadingIndictor = ({
 
   return (
     <div className={className}>
-      <img src={loadingIcon} />
+      <img src={getImage('loadingIcon')} />
       <h1>Loading</h1>
     </div>
   );

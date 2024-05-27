@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
-import homeSweetHomeImg from '../../assets/images/homeSweetHome.png';
-import gameOverImg from '../../assets/images/gameOver.png';
+import { getImage } from '../utils';
+
+import './last-page.css';
 
 type ReactProps = {
   happyEnding: boolean;
@@ -8,8 +9,8 @@ type ReactProps = {
 
 const LastPage = ({ happyEnding }: ReactProps):ReactElement => {
   return (
-    <div className="page last">
-      <img src={ happyEnding ? homeSweetHomeImg : gameOverImg } />
+    <div className="page last-page">
+      <img src={ happyEnding ? getImage('homeSweetHome') : getImage('gameOver') } />
     </div>
   );
 }

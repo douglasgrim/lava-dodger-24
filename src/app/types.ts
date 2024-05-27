@@ -14,6 +14,8 @@ export type ImageType = (
   | 'blank'
   | 'speeder'
   | 'welcomeImage'
+  | 'homeSweetHome'
+  | 'gameOver'
 );
 
 export type Position = {

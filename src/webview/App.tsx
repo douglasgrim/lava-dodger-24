@@ -34,9 +34,8 @@ function App():ReactElement {
   }
 
   if (isHome) {
-    title = 'You made it home!!!';
+    title = 'Congrats on Surviving!';
   }
-
 
   // routes are not set until hero death or return home
   // so that reloading the route will redirect to the
