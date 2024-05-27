@@ -7,7 +7,7 @@ type HeroStatus = {
   moves: number;
 }
 
-type GameComponents = {
+interface GameComponents {
   groundSquares: number[][];
   heroPosition: Position;
   goalPosition: Position;
@@ -26,7 +26,7 @@ const initialState: GameComponents = {
 };
 
 const gameComponentsSlice = createSlice({
-  name: "loadedData",
+  name: 'gameComponents',
   initialState,
   reducers: {
     setGroundSquares: (state, action: PayloadAction<GroundSquaresType>) => {
@@ -43,7 +43,7 @@ const gameComponentsSlice = createSlice({
       health -= healthCost;
       moves -= movesCost;
       state.heroStatus = { health, moves };
-      if (health <= 0) {
+      if (health <= 0 || moves <= 0) {
         state.isAlive = false;
       }
       if (x === homeX && y === homeY) {

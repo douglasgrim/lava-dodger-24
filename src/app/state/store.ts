@@ -1,14 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
-// import loadedDataReducer from "./reducers/_loadedDataSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import gameComponentsReducer from "./reducers/gameComponentsSlice";
 import gameEventsReducer from "./reducers/gameEventsSlice";
 
-export const store = configureStore({
-  reducer: {
-    gameComponents: gameComponentsReducer,
-    gameEvents: gameEventsReducer,
-  },
-});
+const rootReducer = combineReducers({
+  gameComponents: gameComponentsReducer,
+  gameEvents: gameEventsReducer,
+})
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const setupStore = (preloadedState?: Partial<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { store } from './app/state/store';
+import { setupStore } from './app/state/store';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import App from './webview/App';
@@ -8,6 +8,7 @@ import App from './webview/App';
  * @returns - nothing. Top level of react tree with connected redux
  */
 const index = (): void => {
+  const store = setupStore();
   const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
   );

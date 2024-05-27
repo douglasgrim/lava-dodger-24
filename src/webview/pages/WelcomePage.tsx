@@ -24,6 +24,7 @@ function WelcomePage() {
   return (
     <div
       className="page welcome-page"
+      data-testid="welcomePage"
       style={style}
     >
       <div className="button-container showing">
