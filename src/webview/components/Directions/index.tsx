@@ -10,7 +10,7 @@ const Directions = ():ReactElement => {
   const { heroStatus: { health, moves } } = useSelector((state: RootState) => state.gameComponents);
   return (
     <div className="sidebars">
-      <h1>Directions {health} {moves} </h1>
+      <h1>Directions</h1>
       { 
         directionList.map((item: VerbiageType, key: number) => (
           <Verbiage 

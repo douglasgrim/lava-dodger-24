@@ -11,7 +11,6 @@ import goal from '../../assets/images/goal.jpg';
 import homeSweetHome from '../../assets/images/homeSweetHome.jpg';
 import gameOver from '../../assets/images/gameOver.jpg';
 
-
 const imageMap = new Map<ImageType, string>();
 imageMap.set('hero', hero);
 imageMap.set('lava', lava);
@@ -24,6 +23,4 @@ imageMap.set('goal', goal);
 imageMap.set('homeSweetHome', homeSweetHome);
 imageMap.set('gameOver', gameOver);
 
-const getImage = (imageName: ImageType) => imageMap.get(imageName) || '';
-
-export { getImage };
+export const getImage = (imageName: ImageType) => imageMap.get(imageName) || '';

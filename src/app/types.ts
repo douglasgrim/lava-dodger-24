@@ -18,6 +18,12 @@ export type ImageType = (
   | 'gameOver'
 );
 
+export type SquareType = {
+  image: ImageType;
+  healthCost: number;
+  movesCost: number;
+};
+
 export type Position = {
   x: number;
   y: number;

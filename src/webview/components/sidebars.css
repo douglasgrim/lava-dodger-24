@@ -25,3 +25,19 @@
   margin: 5px;
   border: solid 1px #FFFFFF44
 }
+
+.terrain-info {
+  border: solid 1px white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.terrain-info h2 {
+  margin: 0;
+}
+
+.terrain-info img {
+  margin: 15px 0;
+  width: 100%;
+}

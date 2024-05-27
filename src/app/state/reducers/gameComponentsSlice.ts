@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { GroundSquaresType, Position, GroundType } from '../../types';
+import { getSquare } from '../../../webview/utils';
 
 type HeroStatus = {
   health: number;
@@ -36,24 +37,11 @@ const gameComponentsSlice = createSlice({
     setHeroPosition: (state, action: PayloadAction<Position>) => {
       const { x, y } = action.payload;
       const { x: homeX, y: homeY } = state.goalPosition;
-      const groundConditions = state.groundSquares[y][x];
+      const { groundSquares } = state;
       let { health, moves } = state.heroStatus;
-      switch (groundConditions) {
-      case GroundType.Lava:
-        health -= 50;
-        moves -= 10;
-        break;
-      case GroundType.Blank:
-        moves -= 1;
-        break;
-      case GroundType.Speeder:
-        health -= 5;
-        break;
-      case GroundType.Mud:
-        health -= 10;
-        moves -= 5;
-        break;
-      }
+      const { healthCost, movesCost } = getSquare(groundSquares, x, y);
+      health -= healthCost;
+      moves -= movesCost;
       state.heroStatus = { health, moves };
       if (health <= 0) {
         state.isAlive = false;
