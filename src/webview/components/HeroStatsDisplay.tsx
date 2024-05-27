@@ -23,7 +23,7 @@ const HeroStatsDisplay = () => {
       <Gauge title="Moves remaining" value={heroStatus.moves} maxValue={450} />
       <Gauge title="Moves from home: " value={movesFromHome} maxValue={100} forceColor="white" showScale={false} />
       <div className="terrain-info">
-        <h2>Current conditions</h2>
+        <h2>Current conditions: {image}</h2>
         <img className="terrain-image" src={getImage(image)} />
         <h2>Cost: {movesCost} moves / {healthCost} health</h2>
       </div>
