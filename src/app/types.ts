@@ -1,5 +1,5 @@
 export enum GroundType {
-  Normal,
+  Blank,
   Lava,
   Speeder,
   Mud,
@@ -29,13 +29,8 @@ export type VerbiageType = {
 }
 
 export interface IResponseData {
-  heroPosition: Position;
-  goalPosition: Position;
   groundSquares: GroundSquaresType;
   directionList: VerbiageType[];
-  isLoading?: boolean;
-  isLoaded?: boolean;
-  appReady?: boolean;
 }
 
 export type MockResponse = {

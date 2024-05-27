@@ -8,22 +8,23 @@ const delay = (timems: number):Promise<undefined> => new Promise((resolve) => {
 
 const rnd = (low: number, high: number) => Math.floor(Math.random() * (high - low) + low);
 
+
+const getRandomGround = () => {
+  const { Blank, Lava, Mud, Speeder } = GroundType;
+
+  // Force more blank squares so that the maze is survivable :)
+  const groundDistribution = [Blank, Blank, Blank, Blank, Lava, Lava, Mud, Speeder, Speeder];
+  return groundDistribution[rnd(0, groundDistribution.length)]  
+}
+
 /**
  * @returns mock payload - this will be massively refactored to use a REST or GraphQL API
  */
 export const fetch = async (...rest: any[]): Promise<IResponseData> => {
   const groundColumn = Array(50).fill(0).map(() => Array(50).fill(0));
   const groundSquares = groundColumn.map((col) => {
-      return col.map(() => Math.floor(Math.random() * Object.keys(GroundType).length / 2))
+      return col.map(() => getRandomGround())
   });
-  const heroPosition: Position = {
-    x: rnd(2, 8),
-    y: rnd(2, 8),
-  }
-  const goalPosition: Position = {
-    x: rnd(44, 48),
-    y: rnd(44, 48),
-  }
 
   await delay(1500);
 
@@ -58,8 +59,6 @@ const directionList: VerbiageType[] = [
 ]
 
   return {
-    heroPosition,
-    goalPosition,
     groundSquares,
     directionList,
   };

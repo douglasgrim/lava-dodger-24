@@ -7,8 +7,8 @@ const TYPING_DELAY = 100;
 
 type AnimatedTitle = {
   activeTitle: string,
-  firstYear: number,
-  lastYear: number,
+  firstYear?: number,
+  lastYear?: number,
 }
 
 export const useAnimatedTitle = ({
@@ -35,12 +35,16 @@ export const useAnimatedTitle = ({
         setTitle(nextTitle)
         setWordIndex(wordIndex + 1);
       } else {
-        setTitleWithYear(`${title} '${displayedYear.toString().slice(-2)}`);
-        setHeaderState(1);
+        if (displayedYear) {
+            setTitleWithYear(`${title} '${displayedYear.toString().slice(-2)}`);
+            setHeaderState(1);  
+        } else {
+          dispatch(setAppReady(true));
+        }
       }
     }
     const runYears = () => {
-      if (displayedYear <= lastYear) {
+      if ((displayedYear && lastYear) && displayedYear <= lastYear) {
         setTitleWithYear(`${title} '${displayedYear.toString().slice(-2)}`);
         setDisplayedYear(displayedYear + 1);
       } else {
@@ -53,14 +57,14 @@ export const useAnimatedTitle = ({
     } else if (headerState === 1 ){
       timeoutId = setTimeout(() => {setHeaderState(2)}, 500);
     }
-    else {
+    else if (headerState === 2) {
       timeoutId = setTimeout(() => runYears(), TYPING_DELAY / 5);
     }
   
     return () => {
       clearTimeout(timeoutId);
     }
-  }, [title, wordIndex, titleWords]);
+  }, [title, wordIndex, titleWords, activeTitle]);
   return { 
     titleWithYear,
   }

@@ -4,13 +4,12 @@ import {
   useRef,
 } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, UseSelector } from 'react-redux';
 import { AppDispatch } from '../../app/state/store';
+import { useNavigate } from 'react-router-dom';
 
 import {
   setGroundSquares,
-  setHeroPosition,
-  setGoalPosition,
 } from '../../app/state/reducers/gameComponentsSlice';
 
 import {
@@ -27,6 +26,8 @@ import './interactive-page.css';
 import WorldMap from '../components/WorldMap';
 import Directions from '../components/Directions';
 
+import { RootState } from '../../app/state/store';
+
 import { useContainerDimensions } from '../../app/hooks/useContainerDimensions';
 
 /**
@@ -38,8 +39,11 @@ import { useContainerDimensions } from '../../app/hooks/useContainerDimensions';
  */
 function InteractivePage():ReactElement | null {
   const dispatch = useDispatch<AppDispatch>();
+  const { isAlive, isHome } = useSelector((state: RootState) => state.gameComponents);
+  
 
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   const { width, height } = useContainerDimensions(containerRef);
 
@@ -52,17 +56,22 @@ function InteractivePage():ReactElement | null {
       const {
         directionList,
         groundSquares,
-        heroPosition,
-        goalPosition,
       } = data;
       dispatch(setDirectionList(directionList));
       dispatch(setGroundSquares(groundSquares));
-      dispatch(setHeroPosition(heroPosition));
-      dispatch(setGoalPosition(goalPosition));
     }
     fetchData();
     return () => {};
   }, []);
+
+  useEffect(() => {
+    if (isHome) {
+      navigate('/game-over-good');
+    }
+    if (!isAlive) {
+      navigate('/game-over-bad');
+    }
+  });
 
   return (
     <div className="page interactive-page">

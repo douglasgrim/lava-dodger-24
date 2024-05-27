@@ -18,11 +18,10 @@
 
 button {
   font-size: 30px;
-  font-family: 'Concert One';
   border-radius: 8px;
   background-color: #364457;
   color: white;
-  padding: 5px 20px 20px 20px;
+  padding: 5px 20px;
   border: solid 1px white;
   opacity: 0.85;
   cursor: pointer;
