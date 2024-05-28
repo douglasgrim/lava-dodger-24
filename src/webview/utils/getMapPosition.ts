@@ -26,7 +26,6 @@ export const getMapPosition = ({
   mapXOffset = 2,
   mapYOffset = 2,
 }: GridPlacement): MapPosition => {
-  // console.log(mapHeight, mapWidth, x, y);
   const heroX = x * gridWidth + mapXOffset;
   const heroY = y * gridHeight + mapYOffset;
   const mapX = Math.min(Math.max(0, heroX - mapWidth / 2), 50 * gridWidth - mapWidth);

@@ -12,7 +12,6 @@ const HeroStatsDisplay = () => {
     goalPosition: { x: goalX, y: goalY },
     groundSquares,
   } = useSelector((state: RootState) => state.gameComponents);
-  console.log('groundSquares', groundSquares);
   const currentTerrain: GroundType = (groundSquares[y] && groundSquares[y][x]) || 0;
   const movesFromHome = Math.abs(x - goalX) + Math.abs(y - goalY);
   const { image, healthCost, movesCost } = getSquare(groundSquares, x, y);

@@ -9,9 +9,8 @@ type WorldGridType = {
 }
 
 export const WorldGrid = (): ReactElement => {
-  console.log('we have a grid');
   const { groundSquares } = useSelector((state: RootState) => state.gameComponents);
-  const bigMap = (
+  const grid = (
     <div className="world-grid" data-testid="worldGrid">
       {
         groundSquares.map((rowArr, rowKey) => (
@@ -29,6 +28,6 @@ export const WorldGrid = (): ReactElement => {
       }
     </div>
   );
-  return bigMap;
+  return grid;
 
 }
