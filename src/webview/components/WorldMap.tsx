@@ -5,7 +5,6 @@ import { RootState, AppDispatch } from '../../app/state/store';
 import Hero from './Hero';
 import Goal from './Goal';
 import './world-map.css';
-import { userKeyAction } from '../../app/actions/userKeyAction';
 
 import { getMapPosition } from '../utils';
 import { WorldGrid } from './WorldGrid';
@@ -19,8 +18,6 @@ const WorldMap = ({
   containerWidth,
   containerHeight
 }: ReactProps):ReactElement => {
-  const dispatch = useDispatch<AppDispatch>();
-
   const { heroPosition } = useSelector((state: RootState) => state.gameComponents);
   const { isLoaded, isLoading } = useSelector((state: RootState) => state.gameEvents);
 
@@ -42,7 +39,6 @@ const WorldMap = ({
       className={ `world-map ${isLoading ? '' : 'loaded'}`}
       style={style}
       data-testid="worldMap"
-      onClick={() => {dispatch(userKeyAction('ArrowUp', heroPosition))}}
     >
     { isLoaded && (
       <>
