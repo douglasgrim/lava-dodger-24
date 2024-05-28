@@ -17,18 +17,13 @@ const getRandomGround = () => {
   return groundDistribution[rnd(0, groundDistribution.length)]  
 }
 
-/**
- * @returns mock payload - this will be massively refactored to use a REST or GraphQL API
- */
-export const fetch = async (...rest: any[]): Promise<IResponseData> => {
-  const groundColumn = Array(50).fill(0).map(() => Array(50).fill(0));
-  const groundSquares = groundColumn.map((col) => {
-      return col.map(() => getRandomGround())
-  });
+const groundColumn = Array(50).fill(0).map(() => Array(50).fill(0));
 
-  await delay(1500);
+export const groundSquares = groundColumn.map((col) => {
+    return col.map(() => getRandomGround())
+});
 
-const directionList: VerbiageType[] = [
+export const directionList: VerbiageType[] = [
   {
     text: 'Your goal is to get the hero from the upper left hand side of the grid to the lower right, where you will see a lovely house to save said hero from the dangers of the world.',
   },
@@ -56,7 +51,17 @@ const directionList: VerbiageType[] = [
     text: 'And finally, this is home: the square in the lower right where the hero can relax and consider the game won.',
     imageUrl: 'goal',
   }
-]
+];
+
+/**
+ * @returns mock payload - this will be massively refactored to use a REST or GraphQL API
+ */
+export const fetch = async (...rest: any[]): Promise<IResponseData> => {
+
+
+  await delay(1500);
+
+
 
   return {
     groundSquares,

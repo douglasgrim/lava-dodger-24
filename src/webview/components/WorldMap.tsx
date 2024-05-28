@@ -1,11 +1,11 @@
-import { ReactElement, KeyboardEvent  } from 'react';
+import { ReactElement  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../app/state/store';
 
 import Hero from './Hero';
 import Goal from './Goal';
-import GridSquare from './GridSquare';
 import './world-map.css';
+import { userKeyAction } from '../../app/actions/userKeyAction';
 
 import { getMapPosition } from '../utils';
 import { WorldGrid } from './WorldGrid';
@@ -41,6 +41,8 @@ const WorldMap = ({
     <div
       className={ `world-map ${isLoading ? '' : 'loaded'}`}
       style={style}
+      data-testid="worldMap"
+      onClick={() => {dispatch(userKeyAction('ArrowUp', heroPosition))}}
     >
     { isLoaded && (
       <>

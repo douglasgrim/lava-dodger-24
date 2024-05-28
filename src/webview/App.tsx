@@ -41,12 +41,13 @@ function App():ReactElement {
   // so that reloading the route will redirect to the
   // default / route
   return (
-      <div className="app"
+    <BrowserRouter>
+    <div className="app"
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
         <Header activeTitle={title} />
-        <BrowserRouter>
+
           <Routes>
             <Route path="/" element={<WelcomePage />} />
             <Route path="/welcome" element={<WelcomePage />} />
@@ -56,8 +57,9 @@ function App():ReactElement {
             <Route path="*" element={<WelcomePage />} />
 
           </Routes>
-        </BrowserRouter>
       </div>
+      </BrowserRouter>
+
   );
 }
 

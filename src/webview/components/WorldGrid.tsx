@@ -9,10 +9,10 @@ type WorldGridType = {
 }
 
 export const WorldGrid = (): ReactElement => {
-  const t0 = Date.now();
+  console.log('we have a grid');
   const { groundSquares } = useSelector((state: RootState) => state.gameComponents);
   const bigMap = (
-    <div className="world-grid">
+    <div className="world-grid" data-testid="worldGrid">
       {
         groundSquares.map((rowArr, rowKey) => (
           <div className="grid-row" key={rowKey}>
@@ -29,7 +29,6 @@ export const WorldGrid = (): ReactElement => {
       }
     </div>
   );
-  console.log('render time', Date.now() - t0);
   return bigMap;
 
 }

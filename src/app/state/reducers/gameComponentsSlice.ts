@@ -30,6 +30,7 @@ const gameComponentsSlice = createSlice({
   initialState,
   reducers: {
     setGroundSquares: (state, action: PayloadAction<GroundSquaresType>) => {
+      console.log('setting ground sq')
       state.groundSquares = action.payload;
       state.groundSquares[5][5] = 0;
       state.groundSquares[45][45] = 0;

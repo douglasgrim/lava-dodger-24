@@ -74,7 +74,7 @@ function InteractivePage():ReactElement | null {
   });
 
   return (
-    <div className="page interactive-page">
+    <div className="page interactive-page" data-testid="interactivePage">
       <div className="interactive-page">
         <HeroStatsDisplay />
         <div className="world-map-container" ref={containerRef}>

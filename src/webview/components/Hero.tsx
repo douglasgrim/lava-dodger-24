@@ -27,7 +27,7 @@ const Hero = ():ReactElement => {
     <div
       className="world-entity hero"
       style={style}
-
+      data-testid="hero"
     >
       <img src={getImage('hero')} />
     </div>

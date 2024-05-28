@@ -1,6 +1,7 @@
 import App from './App';
-import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProviders } from './test-utils';
+import { screen } from '@testing-library/react';
+import { renderWithProviders } from './utils/test-utils';
+import welcomeImage from '../assets/images/welcomeImage-med.jpg';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -13,9 +14,9 @@ describe('App', () => {
   });
   
   test('renders Welcome Page by default', () => {
-    const welcomePageDiv = document.querySelector('.welcome-page') as HTMLDivElement;
     const welcomePageStyle = window.getComputedStyle(screen.getByTestId('welcomePage'));
     expect (welcomePageStyle.backgroundSize).toBe('contain');
+    expect (welcomePageStyle.background).toContain(welcomeImage);
     expect (screen.getByRole('button')).toHaveTextContent(/start dodging/i);
   })  
 })
